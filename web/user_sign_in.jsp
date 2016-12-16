@@ -21,7 +21,7 @@
         mensaje = "El usuario no coincide con la contraseña";
         
         // Obtiene el usuario
-        Usuario user = Usuario.obtener( ConnectionManager.getConnection(), signInForm.getUsername(), signInForm.getPassword() );
+        Usuario user = Usuario.crear( ConnectionManager.getConnection(), signInForm.getUsername(), signInForm.getPassword(), signInForm.getEmail() );
         System.out.println(user);
         // Si el usuario es valido...
         
@@ -62,7 +62,11 @@
         <br><br>
         confirm password: <input type="password" name=password_confirm>
         <br><br>
-        email: <input type="text" name=email>        
+        nombre <input type="text" name=nombre>
+        <br><br>
+        apellido <input type="text" name=apellido> 
+        <br><br>
+        email: <input type="text" name=email>         
         <hr>
         <input type=submit value=Register><br>
         <font color="red"><%=mensaje%></font>
