@@ -70,37 +70,28 @@ public class Usuario {
         return user;
     }
 
-        public static Usuario crear(Connection conn, String u, String p, String e) throws SQLException
+        public static void crear(Connection conn, String u, String p, String n, String a, String e) throws SQLException
     {
-        if( u.equals("") || p.equals("") || e.equals(""))
-            return null;
-        
+  
         // Construye la query
-        String laConsulta = "Insert into usuarios () " +
-                                "values ()";
+        String laConsulta = "Insert into usuarios (username, password, nombre, apellido, email) " +
+                                "values ("+
+                "'"+u+"',"+
+                "'"+p+"',"+
+                "'"+n+"',"+
+                "'"+a+"',"+
+                "'"+e+"',"+
+                ")";
         
         // Ejecuta la query
         System.out.println(laConsulta);
         Statement stmtConsulta = conn.createStatement();
-        ResultSet rs = stmtConsulta.executeQuery(laConsulta);
-        
-        // Obtiene los datos
-        if( rs.next() )
-        {
-            // Arma el objeto
-            user = new Usuario();
-            user.setId( rs.getInt("usuario_id") );
-            user.setUsuario( rs.getString("username") );
-            user.setPassword( rs.getString("password") );
-            user.setNombre( rs.getString("nombre") );
-            user.setApellido( rs.getString("apellido") );
-       }
+        stmtConsulta.executeUpdate(laConsulta);
+
         
         // Cierra el Statement
         stmtConsulta.close();
         
-        // Retorna el usuario
-        return user;
     }
         
         
